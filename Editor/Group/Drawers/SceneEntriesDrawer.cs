@@ -2,10 +2,12 @@
 using Juce.SceneManagement.Group.Extensions;
 using Juce.SceneManagement.Group.Helpers;
 using Juce.SceneManagement.Group.Logic;
-using Juce.SceneManagement.Group.Style;
+using Juce.SceneManagement.Loader;
 using System.IO;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Juce.SceneManagement.Group.Drawers
 {
@@ -24,9 +26,11 @@ namespace Juce.SceneManagement.Group.Drawers
 
                 string sceneName = Path.GetFileNameWithoutExtension(entry.SceneReference);
 
-                if(string.IsNullOrEmpty(sceneName))
+                bool isValidScene = !string.IsNullOrEmpty(sceneName);
+
+                if (!isValidScene)
                 {
-                    sceneName = "Missing Scene";
+                    sceneName = "Missing Scene!";
                 }
 
                 using (new GUILayout.VerticalScope(EditorStyles.helpBox))
@@ -45,6 +49,18 @@ namespace Juce.SceneManagement.Group.Drawers
                         reorderInteractionRect,
                         secondaryInteractionRect
                         );
+
+                    if (isValidScene)
+                    {
+                        if (GUILayout.Button("Open"))
+                        {
+                            EditorSceneLoader.TryOpen(entry.SceneReference.ScenePath, OpenSceneMode.Single, out Scene _);
+
+                            // For some reason when loading a new scene, unity disposes the below SerializedProperty, 
+                            // so we simply return to avoid a console error.
+                            return; 
+                        }
+                    }
 
                     SerializedProperty serializedProperty = serializedPropertiesData.EntriesProperty.GetArrayElementAtIndex(i);
 

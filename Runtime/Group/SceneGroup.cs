@@ -7,12 +7,22 @@ namespace Juce.SceneManagement.Group
     [CreateAssetMenu(fileName = "SceneGroup", menuName = "Juce/SceneManagement/SceneGroup", order = 1)]
     public class SceneGroup : ScriptableObject
     {
-        public List<SceneGroupEntry> Entries = default;
+        [SerializeField] public List<SceneGroupEntry> Entries = default;
+
+        private ISceneCollection cachedSceneCollection;
 
         public ISceneCollection SceneCollection => GenerateCollection();
 
         private ISceneCollection GenerateCollection()
         {
+            if (!Application.isEditor)
+            {
+                if(cachedSceneCollection != null)
+                {
+                    return cachedSceneCollection;
+                }
+            }
+
             List<ISceneCollectionEntry> sceneEntries = new List<ISceneCollectionEntry>();
 
             foreach(SceneGroupEntry entry in Entries)
@@ -37,7 +47,9 @@ namespace Juce.SceneManagement.Group
                 sceneEntries.Add(sceneEntry);
             }
 
-            return new SceneCollection(sceneEntries);
+            cachedSceneCollection = new SceneCollection(sceneEntries);
+
+            return cachedSceneCollection;
         }
     }
 }

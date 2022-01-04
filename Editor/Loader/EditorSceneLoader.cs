@@ -9,7 +9,19 @@ namespace Juce.SceneManagement.Loader
 {
     public static class EditorSceneLoader
     {
-        public static List<Scene> Open(ISceneCollection sceneCollection, LoadSceneMode mode)
+        public static bool TryOpen(string scenePath, OpenSceneMode mode, out Scene scene)
+        {
+            scene = EditorSceneManager.OpenScene(scenePath, mode);
+
+            if (!scene.IsValid())
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public static List<Scene> Open(ISceneCollection sceneCollection, OpenSceneMode mode)
         {
             List<Scene> ret = new List<Scene>();
 
@@ -23,12 +35,12 @@ namespace Juce.SceneManagement.Loader
                 {
                     first = false;
 
-                    actualMode = OpenSceneMode.Single;
+                    actualMode = mode;
                 }
 
-                Scene loadedScene = EditorSceneManager.OpenScene(sceneEntry.ScenePath, actualMode);
+                bool opened = TryOpen(sceneEntry.ScenePath, actualMode, out Scene loadedScene);
 
-                if(!loadedScene.IsValid())
+                if(!opened)
                 {
                     UnityEngine.Debug.LogError($"There was an error opening scene {sceneEntry}");
                     continue;

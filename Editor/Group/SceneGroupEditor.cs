@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Juce.SceneManagement.Group.Data;
 using Juce.SceneManagement.Group.Drawers;
 using Juce.SceneManagement.Group.Helpers;
+using UnityEditor.SceneManagement;
 
 namespace Juce.SceneManagement.Group
 {
@@ -44,20 +45,13 @@ namespace Juce.SceneManagement.Group
                 reorderableHelper
                 );
 
+            EditorGUILayout.Space(2);
+
             AddEntriesDrawer.Draw(ActualTarget);
 
-            using (new GUILayout.HorizontalScope(EditorStyles.helpBox))
-            {
-                if (GUILayout.Button($"Open All"))
-                {
-                    EditorSceneLoader.Open(ActualTarget.SceneCollection, LoadSceneMode.Single);
-                }
+            EditorGUILayout.Space(2);
 
-                if (GUILayout.Button($"Close All"))
-                {
-                    EditorSceneLoader.Close(ActualTarget.SceneCollection);
-                }
-            }
+            OpenCloseDrawer.Draw(ActualTarget);
 
             if (Event.current.type != EventType.Layout)
             {
