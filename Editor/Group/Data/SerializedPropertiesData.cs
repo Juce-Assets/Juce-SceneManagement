@@ -4,6 +4,15 @@ namespace Juce.SceneManagement.Group.Data
 {
     public class SerializedPropertiesData
     {
-        public SerializedProperty EntriesProperty { get; set; }
+        private readonly SerializedObject serializedObject;
+
+        public SerializedPropertiesData(
+            SerializedObject serializedObject
+            )
+        {
+            this.serializedObject = serializedObject;
+        }
+
+        public SerializedProperty EntriesProperty { get => serializedObject.FindProperty("Entries"); }
     }
 }

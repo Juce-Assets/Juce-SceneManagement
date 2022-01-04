@@ -63,7 +63,7 @@ namespace Juce.SceneManagement.Group.Drawers
 
                             // For some reason when loading a new scene, unity disposes the below SerializedProperty, 
                             // so we simply return to avoid a console error.
-                            return; 
+                            return;
                         }
                     }
 
@@ -71,7 +71,10 @@ namespace Juce.SceneManagement.Group.Drawers
 
                     serializedProperty.ForeachVisibleChildren(DrawChildPropertyField);
 
-                    SceneEntryCustomDrawersDrawer.Draw(toolData, entry);
+                    if (isValidScene)
+                    {
+                        SceneEntryCustomDrawersDrawer.Draw(toolData, entry);
+                    }
                 }
             }
 

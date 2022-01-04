@@ -11,7 +11,7 @@ namespace Juce.SceneManagement.Group
     public class SceneGroupEditor : Editor
     {
         private readonly ToolData toolData = new ToolData();
-        private readonly SerializedPropertiesData serializedPropertiesData = new SerializedPropertiesData();
+        private SerializedPropertiesData serializedPropertiesData;
 
         private readonly ReorderableHelper reorderableHelper = new ReorderableHelper();
 
@@ -21,10 +21,7 @@ namespace Juce.SceneManagement.Group
         {
             ActualTarget = (SceneGroup)target;
 
-            GatherSerializedPropertiesLogic.Execute(
-                this,
-                serializedPropertiesData
-                );
+            serializedPropertiesData = new SerializedPropertiesData(serializedObject);
 
             GatherSceneGroupCustomDrawersLogic.Execute(
                 toolData
