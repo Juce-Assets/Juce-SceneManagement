@@ -60,10 +60,6 @@ namespace Juce.SceneManagement.Group.Drawers
                         if (GUILayout.Button("Open"))
                         {
                             EditorSceneLoader.TryOpen(entry.SceneReference.ScenePath, OpenSceneMode.Single, out Scene _);
-
-                            // For some reason when loading a new scene, unity disposes the below SerializedProperty, 
-                            // so we simply return to avoid a console error.
-                            return;
                         }
                     }
 
