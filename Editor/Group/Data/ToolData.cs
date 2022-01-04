@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Juce.SceneManagement.Group.CustomDrawers;
+using System.Collections.Generic;
 
 namespace Juce.SceneManagement.Group.Data
 {
@@ -6,5 +7,8 @@ namespace Juce.SceneManagement.Group.Data
     {
         public List<SceneGroupEntry> EntriesToRemove { get; } = new List<SceneGroupEntry>();
         public Dictionary<SceneGroupEntry, bool> LastUpdateSceneEntryLoadAsActiveMap { get; } = new Dictionary<SceneGroupEntry, bool>();
+
+        public List<ISceneEntryCustomDrawer> SceneEntryCustomDrawers { get; } = new List<ISceneEntryCustomDrawer>();
+        public List<ISceneGroupCustomDrawer> SceneGroupCustomDrawer { get; } = new List<ISceneGroupCustomDrawer>();
     }
 }

@@ -33,6 +33,11 @@ namespace Juce.SceneManagement.Group.Drawers
                     sceneName = "Missing Scene!";
                 }
 
+                if(i != 0)
+                {
+                    EditorGUILayout.Space(4);
+                }
+
                 using (new GUILayout.VerticalScope(EditorStyles.helpBox))
                 {
                     ComponentHeaderDrawer.Draw(
@@ -65,6 +70,8 @@ namespace Juce.SceneManagement.Group.Drawers
                     SerializedProperty serializedProperty = serializedPropertiesData.EntriesProperty.GetArrayElementAtIndex(i);
 
                     serializedProperty.ForeachVisibleChildren(DrawChildPropertyField);
+
+                    SceneEntryCustomDrawersDrawer.Draw(toolData, entry);
                 }
             }
 

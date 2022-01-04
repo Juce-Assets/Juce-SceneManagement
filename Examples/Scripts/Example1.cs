@@ -4,15 +4,18 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Example1 : MonoBehaviour
+namespace Juce.SceneManagement.Example1
 {
-    [SerializeField] private SceneGroup sceneGroup = default;
-
-    private void Start()
+    public class Example1 : MonoBehaviour
     {
-        RuntimeSceneLoader.Load(sceneGroup.SceneCollection, LoadSceneMode.Single).ContinueWith(
-            (Task result) => { UnityEngine.Debug.Log("Scenes loaded successfully"); },
-            TaskScheduler.FromCurrentSynchronizationContext()
-            );
+        [SerializeField] private SceneGroup sceneGroup = default;
+
+        private void Start()
+        {
+            RuntimeSceneLoader.Load(sceneGroup.SceneCollection, LoadSceneMode.Single).ContinueWith(
+                (Task result) => { UnityEngine.Debug.Log("Scenes loaded successfully"); },
+                TaskScheduler.FromCurrentSynchronizationContext()
+                );
+        }
     }
 }

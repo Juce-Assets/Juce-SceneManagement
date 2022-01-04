@@ -1,12 +1,9 @@
-﻿using Juce.SceneManagement.Loader;
-using Juce.SceneManagement.Group.Logic;
+﻿using Juce.SceneManagement.Group.Logic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Juce.SceneManagement.Group.Data;
 using Juce.SceneManagement.Group.Drawers;
 using Juce.SceneManagement.Group.Helpers;
-using UnityEditor.SceneManagement;
 
 namespace Juce.SceneManagement.Group
 {
@@ -28,6 +25,14 @@ namespace Juce.SceneManagement.Group
                 this,
                 serializedPropertiesData
                 );
+
+            GatherSceneGroupCustomDrawersLogic.Execute(
+                toolData
+                );
+
+            GatherSceneEntryCustomDrawersLogic.Execute(
+                toolData
+                );
         }
 
         public override void OnInspectorGUI()
@@ -37,6 +42,10 @@ namespace Juce.SceneManagement.Group
             EditorGUI.BeginChangeCheck();
 
             serializedObject.Update();
+
+            HeaderDrawer.Draw(ActualTarget);
+
+            EditorGUILayout.Space(4);
 
             SceneEntriesDrawer.Draw(
                 ActualTarget, 
@@ -52,6 +61,8 @@ namespace Juce.SceneManagement.Group
             EditorGUILayout.Space(2);
 
             OpenCloseDrawer.Draw(ActualTarget);
+
+            SceneGroupCustomDrawersDrawer.Draw(toolData, ActualTarget);
 
             if (Event.current.type != EventType.Layout)
             {

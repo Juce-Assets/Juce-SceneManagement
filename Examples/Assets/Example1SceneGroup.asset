@@ -18,18 +18,10 @@ MonoBehaviour:
       scenePath: Assets/Juce-SceneManagement/Examples/Scenes/SceneManagement-Example1-Scene1.unity
     LoadAsActive: 1
   - SceneReference:
-      sceneAsset: {fileID: 102900000, guid: f85bb85e891d44c4b9aaf7a1b49c9af3, type: 3}
-      scenePath: Assets/Juce-SceneManagement/Examples/Scenes/SceneManagement-Example1-Scene3.unity
-    LoadAsActive: 0
-  - SceneReference:
-      sceneAsset: {fileID: 102900000, guid: f85bb85e891d44c4b9aaf7a1b49c9af3, type: 3}
-      scenePath: Assets/Juce-SceneManagement/Examples/Scenes/SceneManagement-Example1-Scene3.unity
-    LoadAsActive: 0
-  - SceneReference:
-      sceneAsset: {fileID: 102900000, guid: f85bb85e891d44c4b9aaf7a1b49c9af3, type: 3}
-      scenePath: Assets/Juce-SceneManagement/Examples/Scenes/SceneManagement-Example1-Scene3.unity
-    LoadAsActive: 0
-  - SceneReference:
       sceneAsset: {fileID: 102900000, guid: 0f6795645e2f1e043b04105dcb373bba, type: 3}
       scenePath: Assets/Juce-SceneManagement/Examples/Scenes/SceneManagement-Example1-Scene2.unity
+    LoadAsActive: 0
+  - SceneReference:
+      sceneAsset: {fileID: 102900000, guid: f85bb85e891d44c4b9aaf7a1b49c9af3, type: 3}
+      scenePath: Assets/Juce-SceneManagement/Examples/Scenes/SceneManagement-Example1-Scene3.unity
     LoadAsActive: 0

@@ -9,7 +9,7 @@ namespace Juce.SceneManagement.Group.Drawers
             SceneGroup sceneGroup
             )
         {
-            if (GUILayout.Button("Add"))
+            if (GUILayout.Button("Add Scene"))
             {
                 AddSceneEntryLogic.Execute(sceneGroup);
             }

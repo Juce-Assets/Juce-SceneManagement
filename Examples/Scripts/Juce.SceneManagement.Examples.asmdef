@@ -2,9 +2,12 @@
     "name": "Juce.SceneManagement.Examples",
     "rootNamespace": "",
     "references": [
-        "GUID:5e2ebe0358dfb1145a41df2df3aded26"
+        "GUID:5e2ebe0358dfb1145a41df2df3aded26",
+        "GUID:6ed3c73bb9c372a438b5861d4777dbb6"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
