@@ -6,3 +6,11 @@
 [![Discord](https://img.shields.io/discord/768962092296044614.svg)](https://discord.gg/dbG7zKA)
 [![Release](https://img.shields.io/github/release/Juce-Assets/Juce-SceneManagement.svg)](https://github.com/Juce-Assets/Juce-SceneManagement/releases/latest)
 
+### - Via UPM
+Add the following line to your [manifest.json](https://docs.unity3d.com/Manual/upm-manifestPrj.html).
+```
+"dependencies": {
+   "com.juce.scenemanagement": "git+https://github.com/Juce-Assets/Juce-SceneManagement#1.0.1",
+},
+```
+
