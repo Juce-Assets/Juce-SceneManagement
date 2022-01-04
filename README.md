@@ -10,7 +10,7 @@
 Add the following line to your [manifest.json](https://docs.unity3d.com/Manual/upm-manifestPrj.html).
 ```
 "dependencies": {
-   "com.juce.scenemanagement": "git+https://github.com/Juce-Assets/Juce-SceneManagement#1.0.1",
+   "com.juce.scenemanagement": "git+https://github.com/Juce-Assets/Juce-SceneManagement#1.0.2",
 },
 ```
 
