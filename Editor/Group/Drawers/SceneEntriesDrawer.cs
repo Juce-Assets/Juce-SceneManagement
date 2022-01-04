@@ -20,8 +20,6 @@ namespace Juce.SceneManagement.Group.Drawers
             ReorderableHelper reorderableHelper
             )
         {
-            SerializedProperty entriesProperty = GetEntriesPropertyLogic.Execute(sceneGroupEditor);
-
             for (int i = 0; i < sceneGroup.Entries.Count; ++i)
             {
                 SceneGroupEntry entry = sceneGroup.Entries[i];
@@ -69,9 +67,10 @@ namespace Juce.SceneManagement.Group.Drawers
                         }
                     }
 
-                    SerializedProperty serializedProperty = entriesProperty.GetArrayElementAtIndex(i);
+                    SerializedProperty entriesProperty = GetEntriesPropertyLogic.Execute(sceneGroupEditor);
+                    SerializedProperty entryProperty = entriesProperty.GetArrayElementAtIndex(i);
 
-                    serializedProperty.ForeachVisibleChildren(DrawChildPropertyField);
+                    entryProperty.ForeachVisibleChildren(DrawChildPropertyField);
 
                     if (isValidScene)
                     {
