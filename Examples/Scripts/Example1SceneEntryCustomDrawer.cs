@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace Juce.SceneManagement.Example1
 {
-    public class Example1SceneEntryCustomDrawer : ISceneEntryCustomDrawer
-    {
-        public void OnInspectorGUI(SceneGroupEntry sceneGroupEntry)
-        {
-            if(GUILayout.Button("Custom Drawer dummy button"))
-            {
+    // Example of SceneEntryCustomDrawer
+    //public class Example1SceneEntryCustomDrawer : ISceneEntryCustomDrawer
+    //{
+    //    public void OnInspectorGUI(SceneGroupEntry sceneGroupEntry)
+    //    {
+    //        if(GUILayout.Button("Custom Drawer dummy button"))
+    //        {
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 }
