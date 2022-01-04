@@ -1,0 +1,17 @@
+{
+  "name": "com.juce.scenemanagement",
+  "version": "1.0.7",
+  "displayName": "Juce-SceneManagement",
+  "description": "Juce Scene Management",
+  "keywords": [
+    "Juce",
+    "SceneManagement"
+  ],
+  "author": {
+    "name": "Guillem Sunyer",
+    "email": "juce.unity@gmail.com",
+    "url": "https://github.com/Juce-Assets/Juce-SceneManagement"
+  },
+  "type": "template",
+  "hideInEditor": false
+}
