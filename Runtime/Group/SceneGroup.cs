@@ -7,7 +7,7 @@ namespace Juce.SceneManagement.Group
     [CreateAssetMenu(fileName = "SceneGroup", menuName = "Juce/SceneManagement/SceneGroup", order = 1)]
     public class SceneGroup : ScriptableObject
     {
-        [SerializeField] public List<SceneGroupEntry> Entries = default;
+        [SerializeField] public List<SceneGroupEntry> Entries = new List<SceneGroupEntry>();
 
         private ISceneCollection cachedSceneCollection;
 
