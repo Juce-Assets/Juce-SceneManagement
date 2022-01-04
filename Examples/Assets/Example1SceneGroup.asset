@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379dda378ed6b8944b8cfbfdbb0a9f0b, type: 3}
+  m_Name: Example1SceneGroup
+  m_EditorClassIdentifier: 
+  entries:
+  - SceneReference:
+      sceneAsset: {fileID: 102900000, guid: cb95e332b588f83458032db17b231d6a, type: 3}
+      scenePath: Assets/Juce-SceneManager/Examples/Scenes/SceneManagement-Example1-Scene1.unity
+    LoadAsActive: 1
+  - SceneReference:
+      sceneAsset: {fileID: 102900000, guid: 0f6795645e2f1e043b04105dcb373bba, type: 3}
+      scenePath: Assets/Juce-SceneManager/Examples/Scenes/SceneManagement-Example1-Scene2.unity
+    LoadAsActive: 0
+  - SceneReference:
+      sceneAsset: {fileID: 102900000, guid: f85bb85e891d44c4b9aaf7a1b49c9af3, type: 3}
+      scenePath: Assets/Juce-SceneManager/Examples/Scenes/SceneManagement-Example1-Scene3.unity
+    LoadAsActive: 0

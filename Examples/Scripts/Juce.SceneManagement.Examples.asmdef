@@ -1,0 +1,16 @@
+{
+    "name": "Juce.SceneManagement.Examples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5e2ebe0358dfb1145a41df2df3aded26"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
