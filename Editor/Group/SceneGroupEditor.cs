@@ -11,7 +11,6 @@ namespace Juce.SceneManagement.Group
     public class SceneGroupEditor : Editor
     {
         private readonly ToolData toolData = new ToolData();
-        private SerializedPropertiesData serializedPropertiesData;
 
         private readonly ReorderableHelper reorderableHelper = new ReorderableHelper();
 
@@ -20,8 +19,6 @@ namespace Juce.SceneManagement.Group
         private void OnEnable()
         {
             ActualTarget = (SceneGroup)target;
-
-            serializedPropertiesData = new SerializedPropertiesData(serializedObject);
 
             GatherSceneGroupCustomDrawersLogic.Execute(
                 toolData
@@ -45,9 +42,9 @@ namespace Juce.SceneManagement.Group
             EditorGUILayout.Space(4);
 
             SceneEntriesDrawer.Draw(
+                this,
                 ActualTarget, 
                 toolData,
-                serializedPropertiesData, 
                 reorderableHelper
                 );
 

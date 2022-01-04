@@ -14,12 +14,14 @@ namespace Juce.SceneManagement.Group.Drawers
     public static class SceneEntriesDrawer
     {
         public static void Draw(
+            SceneGroupEditor sceneGroupEditor,
             SceneGroup sceneGroup,
             ToolData toolData,
-            SerializedPropertiesData serializedPropertiesData,
             ReorderableHelper reorderableHelper
             )
         {
+            SerializedProperty entriesProperty = GetEntriesPropertyLogic.Execute(sceneGroupEditor);
+
             for (int i = 0; i < sceneGroup.Entries.Count; ++i)
             {
                 SceneGroupEntry entry = sceneGroup.Entries[i];
@@ -67,7 +69,7 @@ namespace Juce.SceneManagement.Group.Drawers
                         }
                     }
 
-                    SerializedProperty serializedProperty = serializedPropertiesData.EntriesProperty.GetArrayElementAtIndex(i);
+                    SerializedProperty serializedProperty = entriesProperty.GetArrayElementAtIndex(i);
 
                     serializedProperty.ForeachVisibleChildren(DrawChildPropertyField);
 
