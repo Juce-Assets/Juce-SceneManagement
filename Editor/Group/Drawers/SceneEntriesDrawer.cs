@@ -70,7 +70,7 @@ namespace Juce.SceneManagement.Group.Drawers
 
                     if (isValidScene)
                     {
-                        SceneEntryCustomDrawersDrawer.Draw(toolData, entry);
+                        SceneEntryCustomDrawersDrawer.Draw(toolData, sceneGroup, entry);
                     }
                 }
             }

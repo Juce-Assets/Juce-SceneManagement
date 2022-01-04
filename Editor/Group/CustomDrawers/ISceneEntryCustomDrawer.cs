@@ -3,6 +3,7 @@
     public interface ISceneEntryCustomDrawer
     {
         void OnInspectorGUI(
+            SceneGroup sceneGroup,
             SceneGroupEntry sceneGroupEntry
             );
     }
