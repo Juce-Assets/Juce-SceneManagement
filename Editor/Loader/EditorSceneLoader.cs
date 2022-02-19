@@ -117,7 +117,7 @@ namespace Juce.SceneManagement.Loader
 
         public static Task<bool> Unload(string scenePath)
         {
-            return RuntimeSceneLoader.Unload(scenePath);
+            return RuntimeSceneLoader.UnloadFromPath(scenePath);
         }
 
         public static async Task<List<SceneLoadResult>> Load(ISceneCollection sceneCollection, LoadSceneMode mode)

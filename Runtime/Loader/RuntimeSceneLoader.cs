@@ -9,11 +9,18 @@ namespace Juce.SceneManagement.Loader
 {
     public static class RuntimeSceneLoader
     {
-        public static async Task<SceneLoadResult> Load(string scenePath, LoadSceneMode mode)
+        public static Task<SceneLoadResult> LoadFromPath(string scenePath, LoadSceneMode mode)
         {
+            string sceneName = Path.GetFileNameWithoutExtension(scenePath);
+
             TaskCompletionSource<SceneLoadResult> taskCompletionSource = new TaskCompletionSource<SceneLoadResult>();
 
-            string sceneName = Path.GetFileNameWithoutExtension(scenePath);
+            return LoadFromName(sceneName, mode);
+        }
+
+        public static async Task<SceneLoadResult> LoadFromName(string sceneName, LoadSceneMode mode)
+        {
+            TaskCompletionSource<SceneLoadResult> taskCompletionSource = new TaskCompletionSource<SceneLoadResult>();
 
             AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, mode);
 
@@ -28,7 +35,7 @@ namespace Juce.SceneManagement.Loader
 
                 if (!loadedScene.IsValid())
                 {
-                    UnityEngine.Debug.LogError($"There was an error loading scene: {scenePath}. " +
+                    UnityEngine.Debug.LogError($"There was an error loading scene: {sceneName}. " +
                         $"Loaded scene is not valid at {nameof(RuntimeSceneLoader)}");
                 }
 
@@ -42,15 +49,22 @@ namespace Juce.SceneManagement.Loader
             return result;
         }
 
-        public static Task<bool> Unload(string scenePath)
+        public static Task<bool> UnloadFromPath(string scenePath)
+        {
+            string sceneName = Path.GetFileNameWithoutExtension(scenePath);
+
+            return UnloadFromName(sceneName);
+        }
+
+        public static Task<bool> UnloadFromName(string sceneName)
         {
             TaskCompletionSource<bool> taskCompletionSource = new TaskCompletionSource<bool>();
 
-            Scene loadedScene = SceneManager.GetSceneByPath(scenePath);
+            Scene loadedScene = SceneManager.GetSceneByName(sceneName);
 
             if (!loadedScene.IsValid())
             {
-                // Is already unloaded or wrong path.
+                // Is already unloaded or wrong name.
                 // We only need to log errors at loading.
                 return Task.FromResult(true);
             }
@@ -87,7 +101,7 @@ namespace Juce.SceneManagement.Loader
                     actualMode = mode;
                 }
 
-                SceneLoadResult result = await Load(sceneEntry.ScenePath, LoadSceneMode.Additive);
+                SceneLoadResult result = await LoadFromPath(sceneEntry.ScenePath, LoadSceneMode.Additive);
 
                 bool shouldBeSetToActive = sceneEntry.LoadAsActive && result.Success;
 
@@ -108,7 +122,7 @@ namespace Juce.SceneManagement.Loader
 
             foreach (ISceneCollectionEntry sceneEntry in sceneCollection.SceneEntries)
             {
-                bool result = await Unload(sceneEntry.ScenePath);
+                bool result = await UnloadFromPath(sceneEntry.ScenePath);
 
                 ret.Add(result);
             }
