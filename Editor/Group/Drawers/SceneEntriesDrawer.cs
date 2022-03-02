@@ -59,7 +59,7 @@ namespace Juce.SceneManagement.Group.Drawers
                     {
                         if (GUILayout.Button("Open"))
                         {
-                            EditorSceneLoader.TryOpen(entry.SceneReference.ScenePath, OpenSceneMode.Single, out Scene _);
+                            EditorSceneLoader.TryOpenFromPath(entry.SceneReference.ScenePath, OpenSceneMode.Single, out Scene _);
                         }
                     }
 

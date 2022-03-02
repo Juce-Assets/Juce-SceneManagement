@@ -1,3 +1,4 @@
+using Juce.SceneManagement.Assets;
 using Juce.SceneManagement.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,7 +10,23 @@ namespace Juce.SceneManagement.Loader
 {
     public static class EditorSceneLoader
     {
-        public static bool TryOpen(string scenePath, OpenSceneMode mode, out Scene scene)
+        public static bool TryOpenFromName(string sceneName, OpenSceneMode mode, out Scene scene)
+        {
+            bool scenePathFound = ScenesUtils.TryGetScenePathFromSceneName(
+                sceneName,
+                out string scenePath
+                );
+
+            if(!scenePathFound)
+            {
+                scene = default;
+                return false;
+            }
+
+            return TryOpenFromPath(scenePath, mode, out scene);
+        }
+
+        public static bool TryOpenFromPath(string scenePath, OpenSceneMode mode, out Scene scene)
         {
             scene = EditorSceneManager.OpenScene(scenePath, mode);
 
@@ -38,7 +55,7 @@ namespace Juce.SceneManagement.Loader
                     actualMode = mode;
                 }
 
-                bool opened = TryOpen(sceneEntry.ScenePath, actualMode, out Scene loadedScene);
+                bool opened = TryOpenFromPath(sceneEntry.ScenePath, actualMode, out Scene loadedScene);
 
                 if(!opened)
                 {
