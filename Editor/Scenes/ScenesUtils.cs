@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 
-namespace Juce.SceneManagement.Assets
+namespace Juce.SceneManagement.Scenes
 {
     public static class ScenesUtils
     {
