@@ -9,16 +9,14 @@ namespace Juce.SceneManagement.Loader
 {
     public static class RuntimeSceneLoader
     {
-        public static Task<SceneLoadResult> LoadFromPath(string scenePath, LoadSceneMode mode)
+        public static Task<SceneLoadResult> LoadFromPath(string scenePath, LoadSceneMode mode, bool setAsActive)
         {
             string sceneName = Path.GetFileNameWithoutExtension(scenePath);
 
-            TaskCompletionSource<SceneLoadResult> taskCompletionSource = new TaskCompletionSource<SceneLoadResult>();
-
-            return LoadFromName(sceneName, mode);
+            return LoadFromName(sceneName, mode, setAsActive);
         }
 
-        public static async Task<SceneLoadResult> LoadFromName(string sceneName, LoadSceneMode mode)
+        public static async Task<SceneLoadResult> LoadFromName(string sceneName, LoadSceneMode mode, bool setAsActive)
         {
             TaskCompletionSource<SceneLoadResult> taskCompletionSource = new TaskCompletionSource<SceneLoadResult>();
 
@@ -37,6 +35,10 @@ namespace Juce.SceneManagement.Loader
                 {
                     UnityEngine.Debug.LogError($"There was an error loading scene: {sceneName}. " +
                         $"Loaded scene is not valid at {nameof(RuntimeSceneLoader)}");
+                }
+                else if(setAsActive)
+                {
+                    SceneManager.SetActiveScene(loadedScene);
                 }
 
                 taskCompletionSource.SetResult(new SceneLoadResult(loadedScene));
@@ -101,14 +103,7 @@ namespace Juce.SceneManagement.Loader
                     actualMode = mode;
                 }
 
-                SceneLoadResult result = await LoadFromPath(sceneEntry.ScenePath, LoadSceneMode.Additive);
-
-                bool shouldBeSetToActive = sceneEntry.LoadAsActive && result.Success;
-
-                if (shouldBeSetToActive)
-                {
-                    SceneManager.SetActiveScene(result.Scene);
-                }
+                SceneLoadResult result = await LoadFromPath(sceneEntry.ScenePath, LoadSceneMode.Additive, sceneEntry.LoadAsActive);
 
                 ret.Add(result);
             }
